@@ -1,0 +1,131 @@
+h2.tntitle {text-align: center}
+
+body
+{
+    background-color: #AEB6BF;
+}
+table, tr, td
+{
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse;
+    border: 1px solid white;
+}
+
+td,tr 
+{
+    background-color: #66CCCC;
+    width: 200px;
+}
+
+table.input, tr.input, td.input
+{
+    width: 500px;
+    border: none;
+    text-align: left;
+    margin: auto;
+}
+
+p.foots 
+{
+    font-style: italic; 
+    font-size: small; 
+    text-align: center;
+}
+
+nav.cal 
+{
+    background-color: #FFCC00; 
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+td.days 
+{
+    font-weight: bold;
+    background-color: #D2B4DE;
+    width: 50px;
+}
+button.navlink 
+{
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+span.sub
+{
+    font-weight: bold;
+    margin-left: 10px;
+}
+span.time
+{
+    font-style: italic;
+    font-weight: bold;
+}
+
+form.inputform
+{
+    margin: auto;
+}
+
+div.rolling
+{
+    text-align: left;
+    margin: auto;
+    width: 865px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+table.img, tr.img, td.img
+{
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse;
+    border: none;
+    background-color: #AEB6BF;
+}
+
+img.photo
+{
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 865px;
+}
+
+div.ad
+{
+    width: 873px;
+    margin: auto;
+    text-align: center;
+}
+
+div.adswitch
+{
+    width: 58px;
+    margin: auto;
+    margin-top: 5px;
+    text-align: center;
+}
+
+img.leftbutton
+{
+    margin-bottom: 130px;
+}
+img.ad
+{
+    margin: auto;
+}
+img.rightbutton
+{
+    margin-bottom: 130px;
+}
+
+img.adbutton
+{
+
+}

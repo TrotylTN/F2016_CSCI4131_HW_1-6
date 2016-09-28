@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Calendar Input
+        </title>
+        <link rel="stylesheet" type="text/css" href="./style.css">        
+    </head>
+
+    <body>
+        <div>
+        <h2 class="tntitle"> Calendar Input </h2>
+        <nav class="cal">
+            <button class="navlink" onclick="{location.href='./calendar.html'}">My Calendar</button>
+            <button class="navlink" onclick="{location.href='./inputform.html'}">Form Input</button>
+        </nav>
+        </div>
+
+        <div>
+        <form class="inputform" action="http://www-users.cselabs.umn.edu/~sharm398/index.php" method="get">
+        <table class="input">
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> Event Name: </span> </p>
+                </td>
+                <td class="input">
+                    <p> <input type="text" name="eventname"> </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> Start Time: </span> </p>
+                </td>
+                <td class="input">
+                    <p> <input type="time" name="starttime"> </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> End Time: </span> </p>
+                </td>
+                <td class="input">
+                    <p> <input type="time" name="endtime"> </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> Location: </span> </p>
+                </td>
+                <td class="input">
+                    <p> <input type="text" name="location"> </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> Day of the week: </span> </p>
+                </td>
+                <td class="input">
+                <p>
+                    <select name="day">
+                        <option value="Monday">Mon</option>
+                        <option value="Tuesday">Tue</option>
+                        <option value="Wednesday">Wed</option>
+                        <option value="Thursday">Thu</option>
+                        <option value="Friday">Fri</option>
+                    </select>
+                </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> </p>
+                </td>
+                <td class="input">
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+        </form>
+        </div>
+
+        <div>
+        <footer>
+            <p class="foots">
+                Tested in Firefox and Chrome. Input type "time" does not work in Firefox.
+            </p>
+        </footer>
+        </div>
+        
+    </body>
+</html>

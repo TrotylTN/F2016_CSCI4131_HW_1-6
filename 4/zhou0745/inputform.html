@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Calendar Input
+        </title>
+        <link rel="stylesheet" type="text/css" href="./style.css">        
+    </head>
+
+    <body>
+        <div class="ad">
+            <img id="leftbutton" class="leftbutton" src="./img/prev_blue.png" alt="previous" title="Previous Ad">
+            <img id="mainad" class="ad" src="./img/Nerve.jpg" alt="Nerve">
+            <img id="rightbutton" class="rightbutton" src="./img/next_blue.png" alt="next" title="Next Ad">
+            <br>
+        </div>
+
+        <div class="adswitch">
+            <img id="adbutton1" class="adbutton" src="./img/bullet_gray.png" alt="ad_1" title="First Ad">
+            <img id="adbutton2" class="adbutton" src="./img/bullet_gray.png" alt="ad_2" title="Second Ad">
+            <img id="adbutton3" class="adbutton" src="./img/bullet_gray.png" alt="ad_3" title="Third Ad">
+        </div>
+
+        <div>
+        <h2 class="tntitle"> Calendar Input </h2>
+        <nav class="cal">
+            <button class="navlink" onclick="{location.href='./calendar.html'}">My Calendar</button>
+            <button class="navlink" onclick="{location.href='./inputform.html'}">Form Input</button>
+        </nav>
+        </div>
+
+        <div>
+        <form class="inputform" action="http://www-users.cselabs.umn.edu/~sharm398/index.php" method="get">
+        <table class="input">
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> Event Name: </span> </p>
+                </td>
+                <td class="input">
+                    <p> <input type="text" name="eventname"> </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> Start Time: </span> </p>
+                </td>
+                <td class="input">
+                    <p> <input type="time" name="starttime"> </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> End Time: </span> </p>
+                </td>
+                <td class="input">
+                    <p> <input type="time" name="endtime"> </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> Location: </span> </p>
+                </td>
+                <td class="input">
+                    <p> <input type="text" name="location"> </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> <span class="sub"> Day of the week: </span> </p>
+                </td>
+                <td class="input">
+                <p>
+                    <select name="day">
+                        <option value="Monday">Mon</option>
+                        <option value="Tuesday">Tue</option>
+                        <option value="Wednesday">Wed</option>
+                        <option value="Thursday">Thu</option>
+                        <option value="Friday">Fri</option>
+                    </select>
+                </p>
+                </td>
+            </tr>
+            <tr class="input">
+                <td class="input">
+                    <p> </p>
+                </td>
+                <td class="input">
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+        </form>
+        </div>
+
+        <div>
+        <footer>
+            <p class="foots">
+                Tested in Firefox and Chrome. Input type "time" does not work in Firefox.
+            </p>
+        </footer>
+        </div>
+
+        <script type="text/javascript">
+            var filmURL = "http://sua.umn.edu/events/calendar/event/14781/";
+
+            var leftbutton = document.getElementById("leftbutton");
+            leftbutton.addEventListener("click", prev_ad);
+            leftbutton.addEventListener("mouseover", function() {
+                leftbutton.src = "./img/prev_orange.png";
+            });
+            leftbutton.addEventListener("mouseout", function() {
+                leftbutton.src = "./img/prev_blue.png";
+            });
+
+            var rightbutton = document.getElementById("rightbutton");
+            rightbutton.addEventListener("click", next_ad);
+            rightbutton.addEventListener("mouseover", function() {
+                rightbutton.src = "./img/next_orange.png";
+            });
+            rightbutton.addEventListener("mouseout", function() {
+                rightbutton.src = "./img/next_blue.png";
+            })
+
+            var ad = document.getElementById("mainad");
+            ad.addEventListener("click", function() {
+                window.open(filmURL);                
+            });
+
+            var bullet_color_before_on1;
+            var bullet_color_before_on2;
+            var bullet_color_before_on3;
+
+            var button1 = document.getElementById("adbutton1");
+            button1.addEventListener("click", ad_1);
+            button1.addEventListener("mouseover", function() {
+                bullet_color_before_on1 = button1.src;
+                button1.src = "./img/bullet_orange.png";
+            });
+            button1.addEventListener("mouseout", function() {
+                button1.src = bullet_color_before_on1;
+            });
+
+            var button2 = document.getElementById("adbutton2");
+            button2.addEventListener("click", ad_2);
+            button2.addEventListener("mouseover", function() {
+                bullet_color_before_on2 = button2.src;
+                button2.src = "./img/bullet_orange.png";
+            });
+            button2.addEventListener("mouseout", function() {
+                button2.src = bullet_color_before_on2;
+            });
+
+            var button3 = document.getElementById("adbutton3");
+            button3.addEventListener("click", ad_3);
+            button3.addEventListener("mouseover", function() {
+                bullet_color_before_on3 = button3.src;
+                button3.src = "./img/bullet_orange.png";
+            });
+            button3.addEventListener("mouseout", function() {
+                button3.src = bullet_color_before_on3;
+            })
+
+            var temptime;
+            var curr_ad = 0;
+
+            ad_1();
+
+            function prev_ad()
+            {
+                if (curr_ad == 1)
+                {
+                    curr_ad = 3;
+                }
+                else
+                {
+                    curr_ad = curr_ad - 1;
+                }
+                // stop all time func started before
+                clearTimeout(temptime);
+                temptime = setTimeout("ad_" + String(curr_ad) + "()", 0);
+            }
+
+            function next_ad()
+            {
+                if (curr_ad == 3)
+                {
+                    curr_ad = 1;
+                }
+                else
+                {
+                    curr_ad = curr_ad + 1;
+                }
+                // stop all time func started before
+                clearTimeout(temptime);
+                temptime = setTimeout("ad_" + String(curr_ad) + "()", 0);
+            }
+
+            function ad_1()
+            {
+                clearTimeout(temptime);
+                curr_ad = 1;
+                ad.src = "./img/Nerve.jpg";
+                ad.alt = "Nerve";
+                ad.title = "Nerve\nFri, Sep 30 7:00PM";
+                bullet_color_before_on1 = "./img/bullet_blue.png";
+                bullet_color_before_on2 = "./img/bullet_gray.png";
+                bullet_color_before_on3 = "./img/bullet_gray.png";                
+                button1.src = "./img/bullet_blue.png";
+                button2.src = "./img/bullet_gray.png";
+                button3.src = "./img/bullet_gray.png";                
+                filmURL = "http://sua.umn.edu/events/calendar/event/14781/";
+                temptime = setTimeout("ad_2()", 7000);
+            }
+
+            function ad_2()
+            {
+                clearTimeout(temptime);
+                curr_ad = 2;
+                ad.src = "./img/secret-life-of-pets.jpg";
+                ad.alt = "Secret-life-of-pets";
+                ad.title = "The Secret Life of Pets\nFri, Oct 7 7:00PM";
+                bullet_color_before_on2 = "./img/bullet_blue.png";
+                bullet_color_before_on1 = "./img/bullet_gray.png";
+                bullet_color_before_on3 = "./img/bullet_gray.png";
+                button2.src = "./img/bullet_blue.png";
+                button3.src = "./img/bullet_gray.png";                
+                button1.src = "./img/bullet_gray.png";
+                filmURL = "http://sua.umn.edu/events/calendar/event/14786/";
+                temptime = setTimeout("ad_3()", 5000);
+            }
+
+            function ad_3()
+            {
+                clearTimeout(temptime);
+                curr_ad = 3;
+                ad.src = "./img/suicide-squad.jpg";
+                ad.alt = "suicide-squad";
+                ad.title = "Suicide Squad\nFri, Oct 14 8:00PM";
+                bullet_color_before_on3 = "./img/bullet_blue.png";
+                bullet_color_before_on1 = "./img/bullet_gray.png";
+                bullet_color_before_on2 = "./img/bullet_gray.png";
+                button3.src = "./img/bullet_blue.png";
+                button2.src = "./img/bullet_gray.png";
+                button1.src = "./img/bullet_gray.png";                
+                filmURL = "http://sua.umn.edu/events/calendar/event/14794/";
+                temptime = setTimeout("ad_1()", 3000);
+            }
+        </script>
+    </body>
+</html>

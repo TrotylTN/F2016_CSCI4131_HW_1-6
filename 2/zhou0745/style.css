@@ -1,0 +1,54 @@
+h2.tntitle {text-align: center}
+
+table, tr, td
+{
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse;
+    border: 1px solid white;
+}
+
+td,tr {background-color: #66CCCC}
+
+table.input, tr.input, td.input
+{
+    width: 500px;
+    border: none;
+    text-align: left;
+    margin: auto;
+}
+
+p.foots {font-style: italic; font-size: small; text-align: center;}
+
+nav.cal 
+{
+    background-color: #FFCC00; 
+    text-align: center;
+    margin: 10px;
+}
+
+span.days 
+{
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+span.navlink 
+{
+    margin: 40px
+}
+span.sub
+{
+    font-weight: bold;
+    margin-left: 10px;
+}
+span.time
+{
+    font-style: italic;
+}
+
+form.inputform
+{
+    margin: auto;
+}
