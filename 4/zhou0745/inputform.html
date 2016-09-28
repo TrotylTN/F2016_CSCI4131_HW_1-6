@@ -11,16 +11,16 @@
 
     <body>
         <div class="ad">
-            <img id="leftbutton" class="leftbutton" src="./img/prev_blue.png" alt="previous" title="Previous Ad">
-            <img id="mainad" class="ad" src="./img/Nerve.jpg" alt="Nerve">
-            <img id="rightbutton" class="rightbutton" src="./img/next_blue.png" alt="next" title="Next Ad">
+            <img id="leftbutton" class="leftbutton" src="./prev_blue.png" alt="previous" title="Previous">
+            <img id="mainad" class="ad" src="./Nerve.jpg" alt="Nerve">
+            <img id="rightbutton" class="rightbutton" src="./next_blue.png" alt="next" title="Next">
             <br>
         </div>
 
         <div class="adswitch">
-            <img id="adbutton1" class="adbutton" src="./img/bullet_gray.png" alt="ad_1" title="First Ad">
-            <img id="adbutton2" class="adbutton" src="./img/bullet_gray.png" alt="ad_2" title="Second Ad">
-            <img id="adbutton3" class="adbutton" src="./img/bullet_gray.png" alt="ad_3" title="Third Ad">
+            <img id="adbutton1" class="adbutton" src="./bullet_gray.png" alt="ad_1" title="First Ad">
+            <img id="adbutton2" class="adbutton" src="./bullet_gray.png" alt="ad_2" title="Second Ad">
+            <img id="adbutton3" class="adbutton" src="./bullet_gray.png" alt="ad_3" title="Third Ad">
         </div>
 
         <div>
@@ -108,19 +108,19 @@
             var leftbutton = document.getElementById("leftbutton");
             leftbutton.addEventListener("click", prev_ad);
             leftbutton.addEventListener("mouseover", function() {
-                leftbutton.src = "./img/prev_orange.png";
+                leftbutton.src = "./prev_orange.png";
             });
             leftbutton.addEventListener("mouseout", function() {
-                leftbutton.src = "./img/prev_blue.png";
+                leftbutton.src = "./prev_blue.png";
             });
 
             var rightbutton = document.getElementById("rightbutton");
             rightbutton.addEventListener("click", next_ad);
             rightbutton.addEventListener("mouseover", function() {
-                rightbutton.src = "./img/next_orange.png";
+                rightbutton.src = "./next_orange.png";
             });
             rightbutton.addEventListener("mouseout", function() {
-                rightbutton.src = "./img/next_blue.png";
+                rightbutton.src = "./next_blue.png";
             })
 
             var ad = document.getElementById("mainad");
@@ -136,7 +136,10 @@
             button1.addEventListener("click", ad_1);
             button1.addEventListener("mouseover", function() {
                 bullet_color_before_on1 = button1.src;
-                button1.src = "./img/bullet_orange.png";
+                if (curr_ad != 1)
+                {
+                    button1.src = "./bullet_orange.png";
+                }
             });
             button1.addEventListener("mouseout", function() {
                 button1.src = bullet_color_before_on1;
@@ -146,7 +149,10 @@
             button2.addEventListener("click", ad_2);
             button2.addEventListener("mouseover", function() {
                 bullet_color_before_on2 = button2.src;
-                button2.src = "./img/bullet_orange.png";
+                if (curr_ad != 2)
+                {
+                    button2.src = "./bullet_orange.png";
+                }
             });
             button2.addEventListener("mouseout", function() {
                 button2.src = bullet_color_before_on2;
@@ -156,7 +162,10 @@
             button3.addEventListener("click", ad_3);
             button3.addEventListener("mouseover", function() {
                 bullet_color_before_on3 = button3.src;
-                button3.src = "./img/bullet_orange.png";
+                if (curr_ad != 3)
+                {
+                    button3.src = "./bullet_orange.png";
+                }
             });
             button3.addEventListener("mouseout", function() {
                 button3.src = bullet_color_before_on3;
@@ -201,15 +210,15 @@
             {
                 clearTimeout(temptime);
                 curr_ad = 1;
-                ad.src = "./img/Nerve.jpg";
+                ad.src = "./Nerve.jpg";
                 ad.alt = "Nerve";
                 ad.title = "Nerve\nFri, Sep 30 7:00PM";
-                bullet_color_before_on1 = "./img/bullet_blue.png";
-                bullet_color_before_on2 = "./img/bullet_gray.png";
-                bullet_color_before_on3 = "./img/bullet_gray.png";                
-                button1.src = "./img/bullet_blue.png";
-                button2.src = "./img/bullet_gray.png";
-                button3.src = "./img/bullet_gray.png";                
+                bullet_color_before_on1 = "./bullet_blue.png";
+                bullet_color_before_on2 = "./bullet_gray.png";
+                bullet_color_before_on3 = "./bullet_gray.png";                
+                button1.src = "./bullet_blue.png";
+                button2.src = "./bullet_gray.png";
+                button3.src = "./bullet_gray.png";                
                 filmURL = "http://sua.umn.edu/events/calendar/event/14781/";
                 temptime = setTimeout("ad_2()", 7000);
             }
@@ -218,15 +227,15 @@
             {
                 clearTimeout(temptime);
                 curr_ad = 2;
-                ad.src = "./img/secret-life-of-pets.jpg";
+                ad.src = "./secret-life-of-pets.jpg";
                 ad.alt = "Secret-life-of-pets";
                 ad.title = "The Secret Life of Pets\nFri, Oct 7 7:00PM";
-                bullet_color_before_on2 = "./img/bullet_blue.png";
-                bullet_color_before_on1 = "./img/bullet_gray.png";
-                bullet_color_before_on3 = "./img/bullet_gray.png";
-                button2.src = "./img/bullet_blue.png";
-                button3.src = "./img/bullet_gray.png";                
-                button1.src = "./img/bullet_gray.png";
+                bullet_color_before_on2 = "./bullet_blue.png";
+                bullet_color_before_on1 = "./bullet_gray.png";
+                bullet_color_before_on3 = "./bullet_gray.png";
+                button2.src = "./bullet_blue.png";
+                button3.src = "./bullet_gray.png";                
+                button1.src = "./bullet_gray.png";
                 filmURL = "http://sua.umn.edu/events/calendar/event/14786/";
                 temptime = setTimeout("ad_3()", 5000);
             }
@@ -235,15 +244,15 @@
             {
                 clearTimeout(temptime);
                 curr_ad = 3;
-                ad.src = "./img/suicide-squad.jpg";
+                ad.src = "./suicide-squad.jpg";
                 ad.alt = "suicide-squad";
                 ad.title = "Suicide Squad\nFri, Oct 14 8:00PM";
-                bullet_color_before_on3 = "./img/bullet_blue.png";
-                bullet_color_before_on1 = "./img/bullet_gray.png";
-                bullet_color_before_on2 = "./img/bullet_gray.png";
-                button3.src = "./img/bullet_blue.png";
-                button2.src = "./img/bullet_gray.png";
-                button1.src = "./img/bullet_gray.png";                
+                bullet_color_before_on3 = "./bullet_blue.png";
+                bullet_color_before_on1 = "./bullet_gray.png";
+                bullet_color_before_on2 = "./bullet_gray.png";
+                button3.src = "./bullet_blue.png";
+                button2.src = "./bullet_gray.png";
+                button1.src = "./bullet_gray.png";                
                 filmURL = "http://sua.umn.edu/events/calendar/event/14794/";
                 temptime = setTimeout("ad_1()", 3000);
             }
