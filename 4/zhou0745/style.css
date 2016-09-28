@@ -97,35 +97,35 @@ img.photo
     width: 865px;
 }
 
-div.ad
+table.adswitch, tr.sw, td.sw
 {
-    width: 873px;
-    margin: auto;
     text-align: center;
+    margin: auto;
+    border-collapse: collapse;
+    border: 0px;
+    background-color: #AEB6BF;    
+    height: 20px;
 }
 
-div.adswitch
+td.sw
 {
-    width: 58px;
-    margin: auto;
-    margin-top: 5px;
+    width: 20px;
+}
+table.ad, tr.ad, td.ad, td.adbutton
+{
     text-align: center;
-}
-
-img.leftbutton
-{
-    margin-bottom: 130px;
-}
-img.ad
-{
     margin: auto;
+    border-collapse: collapse;
+    border: 0px;
+    background-color: #AEB6BF;    
+    height: 300px;
 }
-img.rightbutton
+td.adbutton
 {
-    margin-bottom: 130px;
+    width: 40px;
+}
+td.ad
+{
+    width: 800px;
 }
 
-img.adbutton
-{
-
-}
