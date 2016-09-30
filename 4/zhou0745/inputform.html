@@ -119,6 +119,8 @@
 
         <script type="text/javascript">
             var filmURL = "http://sua.umn.edu/events/calendar/event/14781/";
+            var curr_ad = 0;
+            var curr_mouse = 0;            
 
             var leftbutton = document.getElementById("leftbutton");
             leftbutton.addEventListener("click", prev_ad);
@@ -151,6 +153,7 @@
             button1.addEventListener("click", ad_1);
             button1.addEventListener("mouseover", function() {
                 bullet_color_before_on1 = button1.src;
+                curr_mouse = 1;                
                 if (curr_ad != 1)
                 {
                     button1.src = "./bullet_orange.png";
@@ -158,12 +161,14 @@
             });
             button1.addEventListener("mouseout", function() {
                 button1.src = bullet_color_before_on1;
+                curr_mouse = 0;
             });
 
             var button2 = document.getElementById("adbutton2");
             button2.addEventListener("click", ad_2);
             button2.addEventListener("mouseover", function() {
                 bullet_color_before_on2 = button2.src;
+                curr_mouse = 2;
                 if (curr_ad != 2)
                 {
                     button2.src = "./bullet_orange.png";
@@ -171,12 +176,14 @@
             });
             button2.addEventListener("mouseout", function() {
                 button2.src = bullet_color_before_on2;
+                curr_mouse = 0;
             });
 
             var button3 = document.getElementById("adbutton3");
             button3.addEventListener("click", ad_3);
             button3.addEventListener("mouseover", function() {
                 bullet_color_before_on3 = button3.src;
+                curr_mouse = 3;
                 if (curr_ad != 3)
                 {
                     button3.src = "./bullet_orange.png";
@@ -184,10 +191,10 @@
             });
             button3.addEventListener("mouseout", function() {
                 button3.src = bullet_color_before_on3;
+                curr_mouse = 0;
             })
 
             var temptime;
-            var curr_ad = 0;
 
             ad_1();
 
@@ -231,9 +238,13 @@
                 bullet_color_before_on1 = "./bullet_blue.png";
                 bullet_color_before_on2 = "./bullet_gray.png";
                 bullet_color_before_on3 = "./bullet_gray.png";                
-                button1.src = "./bullet_blue.png";
                 button2.src = "./bullet_gray.png";
                 button3.src = "./bullet_gray.png";                
+                button1.src = "./bullet_blue.png";             
+                if (curr_mouse != 0 && curr_mouse != curr_ad)    
+                {
+                    setTimeout("button" + String(curr_mouse) + ".src = './bullet_orange.png'", 0);
+                }
                 filmURL = "http://sua.umn.edu/events/calendar/event/14781/";
                 temptime = setTimeout("ad_2()", 7000);
             }
@@ -248,9 +259,13 @@
                 bullet_color_before_on2 = "./bullet_blue.png";
                 bullet_color_before_on1 = "./bullet_gray.png";
                 bullet_color_before_on3 = "./bullet_gray.png";
-                button2.src = "./bullet_blue.png";
                 button3.src = "./bullet_gray.png";                
                 button1.src = "./bullet_gray.png";
+                button2.src = "./bullet_blue.png";
+                if (curr_mouse != 0 && curr_mouse != curr_ad)    
+                {
+                    setTimeout("button" + String(curr_mouse) + ".src = './bullet_orange.png'", 0);
+                }                                
                 filmURL = "http://sua.umn.edu/events/calendar/event/14786/";
                 temptime = setTimeout("ad_3()", 5000);
             }
@@ -265,9 +280,13 @@
                 bullet_color_before_on3 = "./bullet_blue.png";
                 bullet_color_before_on1 = "./bullet_gray.png";
                 bullet_color_before_on2 = "./bullet_gray.png";
-                button3.src = "./bullet_blue.png";
                 button2.src = "./bullet_gray.png";
                 button1.src = "./bullet_gray.png";                
+                button3.src = "./bullet_blue.png";
+                if (curr_mouse != 0 && curr_mouse != curr_ad)    
+                {
+                    setTimeout("button" + String(curr_mouse) + ".src = './bullet_orange.png'", 0);
+                }
                 filmURL = "http://sua.umn.edu/events/calendar/event/14794/";
                 temptime = setTimeout("ad_1()", 3000);
             }
