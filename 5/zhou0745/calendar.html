@@ -107,25 +107,23 @@
         </tr>
     </table>
     </div>
-
     <p>
+    </p>
     <table class="mp">
         <tr class="mp">
             <td class="mp">
-                <input id="address" type="text" value="Keller Hall, Minneapolis, MN" />
+                <input id="address" type="text" value="Coffman Memorial Union, MN" />
                 <input id="submit_geo" type="button" value="Geocode" />
             </td>
         </tr>
         <tr class="mp">
             <td class="mp">
-                <form action="123">
-                    Radius between 500 and 50,000 <input id="radius" type="text" />
-                    <input type="submit_res" type="button" value="Find Nearby Resturants" />
-                </form>
+                Radius between 500 and 50,000 <input id="radius" type="text" />
+                <input id="submit_res" type="button" value="Find Nearby Resturants" />
             </td>
         </tr>
     </table>
-    </p>
+
     <table class="mp">
         <tr class="mp">
             <td class="mpmp">
@@ -143,47 +141,90 @@
     </div>
 
     <script>
-
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: {lat: 44.974, lng: -93.234}
     });
-    var geocoder = new google.maps.Geocoder();
+    centerPoint = new google.maps.LatLng(44.974, -93.234);
 
-    document.getElementById('submit_geo').addEventListener('click', function() {
-        geocodeAddress(geocoder);
-    });
-
-    var infowindow = new google.maps.InfoWindow();    
+    var infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
 
-    function geocodeAddress(geocoder) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                // var marker = new google.maps.Marker({
-                //     map: resultsMap,
-                //     position: results[0].geometry.location
-                // });
-                createMarker(results[0]);
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
+    document.getElementById('submit_geo').addEventListener('click', getAddress);
+    document.getElementById('submit_res').addEventListener('click', getResturants);
+
+    createCourse(44.9745476, -93.23223189999999, "CSCI 4061 DIS, CSCI 3081W DIS");
+    createCourse(44.9740918, -93.23723039999999, "CSCI 3081W LEC, CSCI 4131 LEC");
+    createCourse(44.977829, -93.23339799999997, "CSCI 4061 LEC");
+    createCourse(44.9755702, -93.2373867, "CSCI 4707 LEC");
+    createCourse(44.974518, -93.23470199999997, "CSCI 4211 LEC");
+    createCourse(44.9694932, -93.2446084, "GEOG 1502 LEC");
+
+    function createCourse(x, y, courseName)
+    {
+        var myLatlng = new google.maps.LatLng(x,y);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: myLatlng,
+            animation: google.maps.Animation.BOUNCE,
+            title: 'UMN Pin'
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(courseName);
+            infowindow.open(map, this);
         });
     }
 
-    function createMarker(place) {
+    function callback(results, status)
+    {
+        if (status == google.maps.places.PlacesServiceStatus.OK)
+        {
+            for (var i = 0; i < results.length; i++)
+            {
+                var place = results[i];
+                createMarker(place);
+            }
+        }
+    }
+
+    function createMarker(place)
+    {
         var placeLoc = place.geometry.location;
         var placeName = place.name;
         var marker = new google.maps.Marker({
             map: map,
-            position: place.geometry.location
+            position: place.geometry.location,
+            title: 'UMN Pin'
         });
         google.maps.event.addListener(marker, 'click', function() {
-            infowindow.setContent(placeName);
+            infowindow.setContent(place.name);
             infowindow.open(map, this);
         });
+    }
+
+    function getAddress() {
+        var address = document.getElementById('address').value;
+        var request = {
+            query: address
+        };
+        service.textSearch(request, function(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK)
+            {
+                var place = results[0];
+                createMarker(place);
+            }
+        });
+    }
+
+    function getResturants()
+    {
+        var radius = document.getElementById('radius').value;
+        var request = {
+            location: centerPoint,
+            radius: radius,
+            type: ['restaurant']
+        }
+        service.nearbySearch(request, callback);
     }
 
 
