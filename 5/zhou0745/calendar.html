@@ -8,6 +8,8 @@
         Tiannan's Calendar
     </title>
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLvHU7BAexcgc-wuWvEzQg6OHMBo_7Le8&libraries=places"></script>
+
 </head>
 
 <body>
@@ -110,15 +112,15 @@
     <table class="mp">
         <tr class="mp">
             <td class="mp">
-                <input id="address" type="text" value="Keller Hall, MN" />
-                <input id="submit" type="button" value="Geocode" />
+                <input id="address" type="text" value="Keller Hall, Minneapolis, MN" />
+                <input id="submit_geo" type="button" value="Geocode" />
             </td>
         </tr>
         <tr class="mp">
             <td class="mp">
                 <form action="123">
-                    Radius between 500 and 50,000 <input type="text" name="radius" />
-                    <button type="submit"> Find Nearby Resturants </button>
+                    Radius between 500 and 50,000 <input id="radius" type="text" />
+                    <input type="submit_res" type="button" value="Find Nearby Resturants" />
                 </form>
             </td>
         </tr>
@@ -127,10 +129,6 @@
     <table class="mp">
         <tr class="mp">
             <td class="mpmp">
-                <!-- <div id="floating-panel">
-                <input id="address" type="textbox" value="Sydney, NSW">
-                <input id="submit" type="button" value="Geocode">
-                </div> -->
                 <div id="map"></div>
             </td>
         </tr>
@@ -145,33 +143,50 @@
     </div>
 
     <script>
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: {lat: 44.972, lng: -93.235}
-        });
-        var geocoder = new google.maps.Geocoder();
 
-        document.getElementById('submit').addEventListener('click', function() {
-            geocodeAddress(geocoder, map);
-        });
-    }
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: {lat: 44.974, lng: -93.234}
+    });
+    var geocoder = new google.maps.Geocoder();
 
-    function geocodeAddress(geocoder, resultsMap) {
+    document.getElementById('submit_geo').addEventListener('click', function() {
+        geocodeAddress(geocoder);
+    });
+
+    var infowindow = new google.maps.InfoWindow();    
+    var service = new google.maps.places.PlacesService(map);
+
+    function geocodeAddress(geocoder) {
         var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
-                resultsMap.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: resultsMap,
-                    position: results[0].geometry.location
-                });
+                map.setCenter(results[0].geometry.location);
+                // var marker = new google.maps.Marker({
+                //     map: resultsMap,
+                //     position: results[0].geometry.location
+                // });
+                createMarker(results[0]);
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
         });
     }
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var placeName = place.name;
+        var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(placeName);
+            infowindow.open(map, this);
+        });
+    }
+
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLvHU7BAexcgc-wuWvEzQg6OHMBo_7Le8&signed_in=true&callback=initMap" async defer></script>
 </body>
 </html>
