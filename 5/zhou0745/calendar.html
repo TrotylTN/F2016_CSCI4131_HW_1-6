@@ -1,184 +1,177 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <title>
-            Tiannan's Calendar
-        </title>
-        <link rel="stylesheet" type="text/css" href="./style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title>
+        Tiannan's Calendar
+    </title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
 
-    <body>
-        <div>
-        <h2 class="tntitle"> Tiannan's Calendar </h2>
-        <nav class="cal">
-            <button class="navlink" onclick="{location.href='./calendar.html'}">My Calendar</button>
-            <button class="navlink" onclick="{location.href='./inputform.html'}">Form Input</button>
-        </nav>
-        </div>
+<body>
+    <div>
+    <h2 class="tntitle"> Tiannan's Calendar </h2>
+    <nav class="cal">
+        <button class="navlink" onclick="{location.href='./calendar.html'}">My Calendar</button>
+        <button class="navlink" onclick="{location.href='./inputform.html'}">Form Input</button>
+    </nav>
+    </div>
 
-        <div class="rolling">
-            <p id="roll">
-            </p>
-        </div>
+    <div>
+    <table>
+        <tr>
+            <td class="days"> Mon </td>
+            <td>
+                <span class="time"> 3:35 - 4:25 PM </span> <br> <br>
+                CSCI 4061 DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall">Keller Hall</a> 1-250
+            </td>
+            <td> - </td>
+            <td> - </td>
+            <td> - </td>
+        </tr>
 
-        <div>
-        <table>
-            <tr>
-                <td class="days"> Mon </td>
-                <td>
-                    <span class="time"> 3:35 - 4:25 PM </span> <br> <br>
-                    CSCI 4061 DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall">Keller Hall</a> 1-250
-                </td>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-            </tr>
+        <tr>
+            <td class="days"> Tue </td>
+            <td>
+                <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
+                CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 412
+            </td>
 
-            <tr>
-                <td class="days"> Tue </td>
-                <td>
-                    <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
-                    CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 412
-                </td>
+            <td>
+                <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
+                CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history">Bell Museum Auditorium</a>
+            </td>
 
-                <td>
-                    <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
-                    CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history">Bell Museum Auditorium</a>
-                </td>
+            <td>
+                <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
+                CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall">Fraser Hall</a> 101
+            </td>
 
-                <td>
-                    <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
-                    CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall">Fraser Hall</a> 101
-                </td>
+            <td>
+                <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
+                CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 230
+            </td>
+        </tr>
 
-                <td>
-                    <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
-                    CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 230
-                </td>
-            </tr>
+        <tr>
+            <td class="days"> Wed </td>
+            <td>
+                <span class="time"> 6:30 - 9:00 PM </span> <br> <br>
+                CSCI 4211 LEC <br>@<a href="http://campusmaps.umn.edu/vincent-hall">Vincent Hall</a> 16
+            </td>
+            <td> - </td>
+            <td> - </td>
+            <td> - </td>
+        </tr>
 
-            <tr>
-                <td class="days"> Wed </td>
-                <td>
-                    <span class="time"> 6:30 - 9:00 PM </span> <br> <br>
-                    CSCI 4211 LEC <br>@<a href="http://campusmaps.umn.edu/vincent-hall">Vincent Hall</a> 16
-                </td>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-            </tr>
+        <tr>
+            <td class="days"> Thu </td>
+            <td>
+                <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
+                CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 412
+            </td>
 
-            <tr>
-                <td class="days"> Thu </td>
-                <td>
-                    <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
-                    CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 412
-                </td>
+            <td>
+                <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
+                CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history">Bell Museum Auditorium</a>
+            </td>
 
-                <td>
-                    <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
-                    CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history">Bell Museum Auditorium</a>
-                </td>
+            <td>
+                <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
+                CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall">Fraser Hall</a> 101
+            </td>
 
-                <td>
-                    <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
-                    CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall">Fraser Hall</a> 101
-                </td>
+            <td>
+                <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
+                CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 230
+            </td>
+        </tr>
 
-                <td>
-                    <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
-                    CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 230
-                </td>
-            </tr>
+        <tr>
+            <td class="days"> Fri </td>
+            <td>
+                <span class="time"> 9:05 - 9:55 AM </span> <br> <br>
+                CSCI 3081W DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall">Keller Hall</a> 1-250
+            </td>
 
-            <tr>
-                <td class="days"> Fri </td>
-                <td>
-                    <span class="time"> 9:05 - 9:55 AM </span> <br> <br>
-                    CSCI 3081W DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall">Keller Hall</a> 1-250
-                </td>
+            <td>
+                <span class="time"> 10:10 - 11:00 AM </span> <br> <br>
+                GEOG 1502 LEC <br>@<a href="http://campusmaps.umn.edu/herbert-m-hanson-jr-hall">Hanson Hall</a> 1-106
+            </td>
+            <td> - </td>
+            <td> - </td>
+        </tr>
+    </table>
+    </div>
 
-                <td>
-                    <span class="time"> 10:10 - 11:00 AM </span> <br> <br>
-                    GEOG 1502 LEC <br>@<a href="http://campusmaps.umn.edu/herbert-m-hanson-jr-hall">Hanson Hall</a> 1-106
-                </td>
-                <td> - </td>
-                <td> - </td>
-            </tr>
-        </table>
-        </div>
+    <p>
+    <table class="mp">
+        <tr class="mp">
+            <td class="mp">
+                <input id="address" type="text" value="Keller Hall, MN" />
+                <input id="submit" type="button" value="Geocode" />
+            </td>
+        </tr>
+        <tr class="mp">
+            <td class="mp">
+                <form action="123">
+                    Radius between 500 and 50,000 <input type="text" name="radius" />
+                    <button type="submit"> Find Nearby Resturants </button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    </p>
+    <table class="mp">
+        <tr class="mp">
+            <td class="mpmp">
+                <!-- <div id="floating-panel">
+                <input id="address" type="textbox" value="Sydney, NSW">
+                <input id="submit" type="button" value="Geocode">
+                </div> -->
+                <div id="map"></div>
+            </td>
+        </tr>
+    </table>
 
-
-        <p>
-            <table class="mp">
-                <tr class="mp">
-                    <td class="mp">
-                        <form action="">
-                            <input type="text" name="address" />
-                            <button type="submit"> Submit </button>
-                        </form>
-                    </td>
-                </tr>
-                <tr class="mp">
-                    <td class="mp">
-                        <form action="">
-                            Radius between 500 and 50,000 <input type="text" name="radius" />
-                            <button type="submit"> Find Nearby Resturants </button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+    <div>
+    <footer>
+        <p class="foots">
+            Tested in Firefox and Chrome.
         </p>
-        <table class="mp">
-            <tr class="mp">
-                <td class="mpmp">
-                    <!-- <div id="floating-panel">
-                    <input id="address" type="textbox" value="Sydney, NSW">
-                    <input id="submit" type="button" value="Geocode">
-                    </div> -->
-                    <div id="map"></div><div>
-                </td>
-            </tr>
-        </table>
+    </footer>
+    </div>
 
-        <footer>
-            <p class="foots">
-                Tested in Firefox and Chrome.
-            </p>
-        </footer>
-        </div>
+    <script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: {lat: 44.972, lng: -93.235}
+        });
+        var geocoder = new google.maps.Geocoder();
 
-        <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: {lat: 44.972, lng: -93.235}
-            });
-            var geocoder = new google.maps.Geocoder();
+        document.getElementById('submit').addEventListener('click', function() {
+            geocodeAddress(geocoder, map);
+        });
+    }
 
-            document.getElementById('submit').addEventListener('click', function() {
-                geocodeAddress(geocoder, map);
-            });
-        }
-
-        function geocodeAddress(geocoder, resultsMap) {
-            var address = document.getElementById('address').value;
-            geocoder.geocode({'address': address}, function(results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    resultsMap.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
-                        map: resultsMap,
-                        position: results[0].geometry.location
-                    });
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
-        }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLvHU7BAexcgc-wuWvEzQg6OHMBo_7Le8&signed_in=true&callback=initMap" async defer></script>
-    </body>
+    function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                resultsMap.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: resultsMap,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLvHU7BAexcgc-wuWvEzQg6OHMBo_7Le8&signed_in=true&callback=initMap" async defer></script>
+</body>
 </html>
