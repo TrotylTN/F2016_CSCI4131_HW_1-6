@@ -128,3 +128,44 @@ td.ad
 {
     width: 800px;
 }
+
+table.mp, tr.mp, td.mp
+{
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse;
+    border: 0px;
+    background-color: white;
+}
+td.mp
+{
+    width: 600px;
+    height: 30px;
+}
+td.mpmp
+{
+    width: 800px;
+    height: 600px;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#map {
+    height: 100%;
+    /*width: 800px;*/
+}
+/*#floating-panel {
+    /*position: absolute;*/
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+}*/
