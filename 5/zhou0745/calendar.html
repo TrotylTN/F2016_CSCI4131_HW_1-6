@@ -119,7 +119,7 @@
         <tr class="mp">
             <td class="mp">
                 Radius between 500 and 50,000 <input id="radius" type="text" />
-                <input id="submit_res" type="button" value="Find Nearby Resturants" />
+                <input id="submit_res" type="button" value="Find Nearby Restaurants" />
             </td>
         </tr>
     </table>
@@ -151,14 +151,14 @@
     var service = new google.maps.places.PlacesService(map);
 
     document.getElementById('submit_geo').addEventListener('click', getAddress);
-    document.getElementById('submit_res').addEventListener('click', getResturants);
+    document.getElementById('submit_res').addEventListener('click', getRestaurants);
 
-    createCourse(44.9745476, -93.23223189999999, "CSCI 4061 DIS, CSCI 3081W DIS");
-    createCourse(44.9740918, -93.23723039999999, "CSCI 3081W LEC, CSCI 4131 LEC");
-    createCourse(44.977829, -93.23339799999997, "CSCI 4061 LEC");
-    createCourse(44.9755702, -93.2373867, "CSCI 4707 LEC");
-    createCourse(44.974518, -93.23470199999997, "CSCI 4211 LEC");
-    createCourse(44.9694932, -93.2446084, "GEOG 1502 LEC");
+    createCourse(44.9745476, -93.23223189999999, "Keller Hall<br><br>CSCI 4061 DIS<br>#1-250<br><br>CSCI 3081W DIS<br>#1-250");
+    createCourse(44.9740918, -93.23723039999999, "Bruininks Hall<br><br>CSCI 3081W LEC<br>#412<br><br>CSCI 4131 LEC<br>#230");
+    createCourse(44.977829, -93.23339799999997, "Bell Museum<br><br>CSCI 4061 LEC<br>Auditorium");
+    createCourse(44.9755702, -93.2373867, "Fraser Hall<br><br>CSCI 4707 LEC<br>#101");
+    createCourse(44.974518, -93.23470199999997, "Vincent Hall<br><br>CSCI 4211 LEC<br>#16");
+    createCourse(44.9694932, -93.2446084, "Hanson Hall<br><br>GEOG 1502 LEC<br>#1-106");
 
     function createCourse(x, y, courseName)
     {
@@ -181,24 +181,32 @@
         {
             for (var i = 0; i < results.length; i++)
             {
-                var place = results[i];
-                createMarker(place);
+                createMarker(results[i]);
             }
         }
     }
 
-    function createMarker(place)
+    function createMarker(place_result)
     {
-        var placeLoc = place.geometry.location;
-        var placeName = place.name;
-        var marker = new google.maps.Marker({
-            map: map,
-            position: place.geometry.location,
-            title: 'UMN Pin'
-        });
-        google.maps.event.addListener(marker, 'click', function() {
-            infowindow.setContent(place.name);
-            infowindow.open(map, this);
+        var request = {
+            placeId: place_result.place_id
+        };
+        service.getDetails(request, function(place, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK)
+            {
+                var placeLoc = place.geometry.location;
+                var placeName = place.name;
+                var placeAddress = place.formatted_address;
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location,
+                    title: 'UMN Pin'
+                });
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent('<b>' + placeName + '</b><br>' +placeAddress);
+                    infowindow.open(map, this);
+                });
+            }
         });
     }
 
@@ -216,7 +224,7 @@
         });
     }
 
-    function getResturants()
+    function getRestaurants()
     {
         var radius = document.getElementById('radius').value;
         var request = {
