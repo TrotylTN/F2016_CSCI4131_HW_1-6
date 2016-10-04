@@ -12,7 +12,7 @@ table, tr, td
     border: 1px solid white;
 }
 
-td,tr 
+td,tr
 {
     background-color: #66CCCC;
     width: 200px;
@@ -26,16 +26,16 @@ table.input, tr.input, td.input
     margin: auto;
 }
 
-p.foots 
+p.foots
 {
-    font-style: italic; 
-    font-size: small; 
+    font-style: italic;
+    font-size: small;
     text-align: center;
 }
 
-nav.cal 
+nav.cal
 {
-    background-color: #FFCC00; 
+    background-color: #FFCC00;
     text-align: center;
     margin-left: 30px;
     margin-right: 30px;
@@ -43,13 +43,13 @@ nav.cal
     margin-bottom: 10px
 }
 
-td.days 
+td.days
 {
     font-weight: bold;
     background-color: #D2B4DE;
     width: 50px;
 }
-button.navlink 
+button.navlink
 {
     margin-left: 40px;
     margin-right: 40px;
@@ -103,7 +103,7 @@ table.adswitch, tr.sw, td.sw
     margin: auto;
     border-collapse: collapse;
     border: 0px;
-    background-color: #AEB6BF;    
+    background-color: #AEB6BF;
     height: 20px;
 }
 
@@ -117,7 +117,7 @@ table.ad, tr.ad, td.ad, td.adbutton
     margin: auto;
     border-collapse: collapse;
     border: 0px;
-    background-color: #AEB6BF;    
+    background-color: #AEB6BF;
     height: 300px;
 }
 td.adbutton
@@ -128,4 +128,3 @@ td.ad
 {
     width: 800px;
 }
-
