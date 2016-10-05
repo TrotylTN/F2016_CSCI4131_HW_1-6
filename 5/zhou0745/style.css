@@ -7,6 +7,7 @@ body
 table, tr, td
 {
     text-align: center;
+    vertical-align: middle;
     margin: auto;
     border-collapse: collapse;
     border: 1px solid white;
@@ -90,13 +91,6 @@ table.img, tr.img, td.img
     background-color: #AEB6BF;
 }
 
-img.photo
-{
-    border: 1px solid white;
-    border-radius: 5px;
-    width: 865px;
-}
-
 table.adswitch, tr.sw, td.sw
 {
     text-align: center;
@@ -139,12 +133,12 @@ table.mp, tr.mp, td.mp, td.mpmp
 }
 td.mp
 {
-    width: 800px;
+    width: 600px;
     height: 30px;
 }
 td.mpmp
 {
-    width: 1000px;
+    width: 860px;
     height: 600px;
 }
 html, body {
@@ -154,5 +148,16 @@ html, body {
 }
 #map {
     height: 100%;
-    /*width: 800px;*/
+}
+
+img.cal
+{
+    display: none;
+    width: 150px;
+}
+
+tr.c, td.c
+{
+    vertical-align: top;
+    height: 180px;
 }
