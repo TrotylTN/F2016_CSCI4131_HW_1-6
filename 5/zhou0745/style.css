@@ -152,12 +152,11 @@ html, body {
 
 img.cal
 {
-    display: none;
+    opacity: 0;
     width: 150px;
 }
 
 tr.c, td.c
 {
-    vertical-align: top;
     height: 180px;
 }
