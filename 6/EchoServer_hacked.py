@@ -24,6 +24,7 @@ from argparse import ArgumentParser
 BUFSIZE = 4096
 CRLF = '\r\n'
 cur_pwd = os.getcwd()
+acc_file_ext = ['html', 'jpeg', 'gif', 'pdf', 'doc', 'pptx']
 
 #You might find it useful to define variables similiar to the one above
 #for each kind of response message
@@ -65,14 +66,22 @@ def processreq(req):
     req_path = req_path.lstrip('/')
     if req_path == "csumn":
         return REDIR_301 + "https://www.cs.umn.edu/"
+
     if '%' in req_path:
         return ERROR_404 + add_content_after_head("404.html")
     if not os.path.isfile(req_path):
         return ERROR_404 + add_content_after_head("404.html")
+
     req_file_info = os.stat(req_path)
     req_file_perm = bin(req_file_info.st_mode)[-9:]
-    if (req_file_perm[6] == '1'):
-        return OK + add_content_after_head(req_path)
+    if req_file_perm[6] == '1':
+        req_file_ext = req_path.split('.')[-1]
+        if not req_file_ext in acc_file_ext:
+            return ERROR_406
+        if req_type == "GET":
+            return OK + add_content_after_head(req_path)
+        elif req_type == "HEAD":
+            return OK
     else:
         return ERROR_403 + add_content_after_head("403.html")
 
