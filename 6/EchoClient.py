@@ -27,8 +27,8 @@ class EchoClient:
     msg = input('')
     while msg:
       self.sock.send(bytes(msg, 'utf-8'))
-      print(self.sock.recv(BUFSIZE).decode('utf-8'))
       msg = input('')
+    print(self.sock.recv(BUFSIZE).decode('utf-8'))
 
 
 def parse_args():

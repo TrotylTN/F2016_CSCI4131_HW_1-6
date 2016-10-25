@@ -8,17 +8,6 @@ import sys
 from threading import Thread
 from argparse import ArgumentParser
 
-# for the server you may find the following python libraries useful:
-#import os - check to see if a file exists in python -
-# e.g., os.path.isfile, os.path.exists
-
-#import stat
-#check if a file has others permissions set, os.stat
-
-#import sys - enables you to get the argument vector (argv) from command line and use
-# values passed in from the command line
-
-
 #other defintions that will come in handy for getting data and
 #constructing a response
 BUFSIZE = 4096
@@ -54,23 +43,34 @@ def processreq(req):
     req_end = req_by_word[-1]
     req_path = ' '.join(req_by_word[1:-1])
 
-    OK = '{} 200 OK{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
-    ERROR_403 = '{} 403 Forbidden{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
-    ERROR_404 = '{} 404 Not Found{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
-    ERROR_405 = '{} 405 Method Not Allowed{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
-    ERROR_406 = '{} 406 Not Acceptable Response{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
-    REDIR_301 = '{} 301 Move Permanently{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
+    if not req_end in ["HTTP/1.0", "HTTP/1.1"]:
+        req_end = "HTTP/1.1"
+    OK = '{} 200 OK{}{}'.format(req_end,CRLF,CRLF)
+    ERROR_403 = '{} 403 Forbidden{}{}'.format(req_end,CRLF,CRLF)
+    ERROR_404 = '{} 404 Not Found{}{}'.format(req_end,CRLF,CRLF)
+    ERROR_405 = '{} 405 Method Not Allowed{}{}'.format(req_end,CRLF,CRLF)
+    ERROR_406 = '{} 406 Not Acceptable Response{}{}'.format(req_end,CRLF,CRLF)
+    REDIR_301 = '{} 301 Move Permanently{}{}'.format(req_end,CRLF,CRLF)
 
     if not req_type in ['GET', 'HEAD']:
         return ERROR_405
     req_path = req_path.lstrip('/')
     if req_path == "csumn":
-        return REDIR_301 + "https://www.cs.umn.edu/"
+        if req_type == "GET":
+            return REDIR_301 + "Location: https://www.cs.umn.edu/"
+        else:
+            return REDIR_301
 
     if '%' in req_path:
-        return ERROR_404 + add_content_after_head("404.html")
+        if req_type == "GET":
+            return ERROR_404 + add_content_after_head("404.html")
+        else:
+            return ERROR_404
     if not os.path.isfile(req_path):
-        return ERROR_404 + add_content_after_head("404.html")
+        if req_type == "GET":
+            return ERROR_404 + add_content_after_head("404.html")
+        else:
+            return ERROR_404
 
     req_file_info = os.stat(req_path)
     req_file_perm = bin(req_file_info.st_mode)[-9:]
@@ -78,12 +78,15 @@ def processreq(req):
         req_file_ext = req_path.split('.')[-1]
         if not req_file_ext in acc_file_ext:
             return ERROR_406
-        if req_type == "GET":
+        elif req_type == "GET":
             return OK + add_content_after_head(req_path)
         elif req_type == "HEAD":
             return OK
     else:
-        return ERROR_403 + add_content_after_head("403.html")
+        if req_type == "GET":
+            return ERROR_403 + add_content_after_head("403.html")
+        else:
+            return ERROR_403
 
 def add_content_after_head(filename):
     fd = open(filename, "r")
