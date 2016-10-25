@@ -8,35 +8,11 @@ import sys
 from threading import Thread
 from argparse import ArgumentParser
 
-#other defintions that will come in handy for getting data and
-#constructing a response
 BUFSIZE = 4096
 CRLF = '\r\n'
 cur_pwd = os.getcwd()
 acc_file_ext = ['html', 'jpeg', 'gif', 'pdf', 'doc', 'pptx']
 
-#You might find it useful to define variables similiar to the one above
-#for each kind of response message
-
-#Outline for processing a request - indicated by the call to processreq below
-#the outline below is for a GET request, though the others should be similar (but not the same)
-#remember, you have an HTTP Message that you are parsing
-#so, you want to parse the message to get the first word on the first line
-#of the message (the HTTP command GET, HEAD, ????) if the HTTP command is not known you should respond with an error
-#then get the    resource (file path and name) - python strip and split should help
-#Next,    does the resource have a legal name (no % character)
-#            if false    - construct an error message for the response and return
-#                     if true - check to see if the resource exists
-#                if false - construct an error message for the response and return
-#                if true - check to see if the permissions on the resource for others are ok
-#                    if false - construct an error message for the response and resturn
-#                    if true - Success!!!
-#                                                            open the resource (file)
-#                                                            read the resource into a buffer
-#                                                            create a response message by concatenating the OK message above with
-#                                                            the string you read in from the file
-#                                                            return the response
-#
 def processreq(req):
     req_by_line = req.split(CRLF)
     req_by_word = req_by_line[0].split(' ')
@@ -61,9 +37,9 @@ def processreq(req):
     req_path = req_path.lstrip('/')
     if req_path == "csumn":
         if req_type == "GET":
-            return REDIR_301 + "Location: https://www.cs.umn.edu/"
+            return REDIR_301 + "Location: https://www.cs.umn.edu/" + (CRLF * 3)
         elif req_type == "HEAD":
-            return REDIR_301
+            return REDIR_301 + (CRLF * 3)
 
     if '%' in req_path:
         if req_type == "GET":
