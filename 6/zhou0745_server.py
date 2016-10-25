@@ -47,7 +47,7 @@ def processreq(req):
     if not req_end in ["HTTP/1.0", "HTTP/1.1"]:
         req_end = "HTTP/1.1"
     OK = '{} 200 OK{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
-    ERROR_400 = '{} 400 Bad request{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
+    ERROR_400 = '{} 400 Bad Request{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
     ERROR_403 = '{} 403 Forbidden{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
     ERROR_404 = '{} 404 Not Found{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
     ERROR_405 = '{} 405 Method Not Allowed{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
