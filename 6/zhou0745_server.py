@@ -8,90 +8,94 @@ import sys
 from threading import Thread
 from argparse import ArgumentParser
 
-#other defintions that will come in handy for getting data and
-#constructing a response
 BUFSIZE = 4096
 CRLF = '\r\n'
 cur_pwd = os.getcwd()
-acc_file_ext = ['html', 'jpeg', 'gif', 'pdf', 'doc', 'pptx']
+acc_file_ext = ['html', 'jpeg', 'gif', 'pdf', 'doc', 'pptx', 'mod']
 
-#You might find it useful to define variables similiar to the one above
-#for each kind of response message
-
-#Outline for processing a request - indicated by the call to processreq below
-#the outline below is for a GET request, though the others should be similar (but not the same)
-#remember, you have an HTTP Message that you are parsing
-#so, you want to parse the message to get the first word on the first line
-#of the message (the HTTP command GET, HEAD, ????) if the HTTP command is not known you should respond with an error
-#then get the    resource (file path and name) - python strip and split should help
-#Next,    does the resource have a legal name (no % character)
-#            if false    - construct an error message for the response and return
-#                     if true - check to see if the resource exists
-#                if false - construct an error message for the response and return
-#                if true - check to see if the permissions on the resource for others are ok
-#                    if false - construct an error message for the response and resturn
-#                    if true - Success!!!
-#                                                            open the resource (file)
-#                                                            read the resource into a buffer
-#                                                            create a response message by concatenating the OK message above with
-#                                                            the string you read in from the file
-#                                                            return the response
-#
 def processreq(req):
-    req_by_word = req.split(' ')
+    req_by_line = req.split(CRLF)
+    req_by_word = req_by_line[0].split(' ')
     req_type = req_by_word[0]
     req_end = req_by_word[-1]
     req_path = ' '.join(req_by_word[1:-1])
 
     if not req_end in ["HTTP/1.0", "HTTP/1.1"]:
         req_end = "HTTP/1.1"
-    OK = '{} 200 OK{}{}'.format(req_end,CRLF,CRLF)
-    ERROR_403 = '{} 403 Forbidden{}{}'.format(req_end,CRLF,CRLF)
-    ERROR_404 = '{} 404 Not Found{}{}'.format(req_end,CRLF,CRLF)
-    ERROR_405 = '{} 405 Method Not Allowed{}{}'.format(req_end,CRLF,CRLF)
-    ERROR_406 = '{} 406 Not Acceptable Response{}{}'.format(req_end,CRLF,CRLF)
-    REDIR_301 = '{} 301 Move Permanently{}{}'.format(req_end,CRLF,CRLF)
+    OK = '{} 200 OK{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
+    ERROR_400 = '{} 400 Bad Request{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
+    ERROR_403 = '{} 403 Forbidden{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
+    ERROR_404 = '{} 404 Not Found{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
+    ERROR_405 = '{} 405 Method Not Allowed{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
+    ERROR_406 = '{} 406 Not Acceptable Response{}{}{}'.format(req_end,CRLF,CRLF,CRLF)
 
+    REDIR_301 = '{} 301 Move Permanently{}'.format(req_end,CRLF)
+
+    # Invalid request
     if not req_type in ['GET', 'HEAD']:
         return ERROR_405
+
     req_path = req_path.lstrip('/')
+    # redir to cs.umn.edu if the path is 'csumn'
     if req_path == "csumn":
         if req_type == "GET":
-            return REDIR_301 + "Location: https://www.cs.umn.edu/"
-        else:
-            return REDIR_301
+            return REDIR_301 + "Location: https://www.cs.umn.edu/" + (CRLF * 3)
+        elif req_type == "HEAD":
+            return REDIR_301 + (CRLF * 3)
 
+    # 400 Bad Request if the path contains invalid symbol
     if '%' in req_path:
         if req_type == "GET":
-            return ERROR_404 + add_content_after_head("404.html")
-        else:
-            return ERROR_404
+            return ERROR_400 + add_content_after_head("400.html")
+        elif req_type == "HEAD":
+            return ERROR_400
+
+    # 404 Not Found if the path does not exist
     if not os.path.isfile(req_path):
         if req_type == "GET":
             return ERROR_404 + add_content_after_head("404.html")
-        else:
+        elif req_type == "HEAD":
             return ERROR_404
 
+    #get the permissions of the file requested
     req_file_info = os.stat(req_path)
     req_file_perm = bin(req_file_info.st_mode)[-9:]
+
     if req_file_perm[6] == '1':
+        # if others have the read permission, get the extend filename
         req_file_ext = req_path.split('.')[-1]
+        # if the ext is not in the set of acceptable ext list, return 406
         if not req_file_ext in acc_file_ext:
-            return ERROR_406
+            if req_type == "GET":
+                return ERROR_406 + add_content_after_head("406.html")
+            elif req_type == "HEAD":
+                return ERROR_406
+        #return 200 and the page if the request is GET
         elif req_type == "GET":
             return OK + add_content_after_head(req_path)
         elif req_type == "HEAD":
             return OK
     else:
+        # if others do not have the permission to read, return 403
         if req_type == "GET":
             return ERROR_403 + add_content_after_head("403.html")
-        else:
+        elif req_type == "HEAD":
             return ERROR_403
 
 def add_content_after_head(filename):
-    fd = open(filename, "r")
-    msg = fd.read()
-    fd.close()
+    # consider whether the page is a html file
+    ext = filename.split('.')[-1]
+    if (ext == "html"):
+        # try to open the file, return an empty str if failed
+        try:
+            fd = open(filename, "r")
+            msg = fd.read()
+            fd.close()
+        except:
+            msg = ""
+    else:
+        # return the type and name of the requst in plain text
+        msg = "a '{}' file called '{}'".format(ext, filename)
     return msg
 
 
