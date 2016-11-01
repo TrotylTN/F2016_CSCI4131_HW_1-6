@@ -105,8 +105,9 @@ def client_talk(client_sock, client_addr):
     # note, here is where you decode the data and process the request
     req = data.decode('utf-8')
     # then, you'll need a routine to process the data, and formulate a response
+    print('---- Request ----\n{}'.format(req))
     response = processreq(req)
-    print(response)
+    print('---- Response ----\n{}'.format(response))
     #once have the response, you send it
     client_sock.send(bytes(response, 'utf-8'))
 
